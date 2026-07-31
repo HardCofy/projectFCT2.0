@@ -1,7 +1,7 @@
 <?php
 
-declare(strict_types=0);
-$pdo = require '../config/database.php';
+declare(strict_types=1);
+$pdo = require '../../config/database.php';
 
 $users = $pdo->query(
     'SELECT * FROM utilizadores'
@@ -15,16 +15,16 @@ function e(string $value): string
 $email = $_POST['email'] ?? '';
 $password = $_POST['password'] ?? '';
 
-if($email === '' || $password === '') {
-    header('Location: /admin');
+if ($email === '' || $password === '') {
+    header('Location: ../admin/index.php');
     exit;
 }
 
 $usersByEmail = array_column($users, null, 'email');
 $user = $usersByEmail[$email] ?? null;
 
-if($user == null || !password_verify($password, $user['password'])) {
-    header('Location: /admin?error=invalid_credentials');
+if ($user === null || !password_verify($password, $user['password'])) {
+    header('Location: ../admin/index.php?error=invalid_credentials');
     exit;
 }
 
@@ -33,5 +33,5 @@ $_SESSION['user_id'] = $user['id'];
 $_SESSION['user_email'] = $user['email'];
 $_SESSION['user_name'] = $user['nome'];
 
-header('Location: /dashboard');
+header('Location: ../admin/dashboard.php');
 exit;
