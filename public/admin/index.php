@@ -1,22 +1,6 @@
-<?php
-
-declare(strict_types=1);
-
-$pdo = require __DIR__ . '/../config/database.php';
-
-$users = $pdo->query(
-    'SELECT * FROM utilizadores'
-)->fetchAll();
-
-function e(string $value): string
-{
-    return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
-}
-?>
 
 <!doctype html>
 <html lang="pt-PT">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -92,10 +76,10 @@ function e(string $value): string
                     </p>
                 </div>
 
-                <form class="space-y-5" action="#" method="post">
+                <form class="space-y-5" action="../actions/verifyUser.php" method="post">
                     <div>
                         <label for="email" class="mb-2 block text-sm font-medium text-slate-700">
-                            Email profissional
+                            Email 
                         </label>
 
                         <input
@@ -136,7 +120,7 @@ function e(string $value): string
                     </label>
 
                     <button
-                        type="button"
+                        type="submit"
                         class="w-full rounded-xl bg-sky-600 px-5 py-3.5 font-semibold text-white transition hover:bg-sky-700 focus:outline-none focus:ring-4 focus:ring-sky-200">
                         Entrar no painel
                     </button>
