@@ -1,7 +1,7 @@
 <?php
 
 declare(strict_types=0);
-$pdo = require __DIR__ . '/../config/database.php';
+$pdo = require '../config/database.php';
 
 $users = $pdo->query(
     'SELECT * FROM utilizadores'
